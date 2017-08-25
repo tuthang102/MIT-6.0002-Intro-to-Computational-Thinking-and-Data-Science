@@ -128,14 +128,15 @@ def get_best_path(digraph, start, end, path, max_dist_outdoors, best_dist,
         raise ValueError('Invalid Node')
     elif start == end:
         return path
-    for node in digraph.get_edges_for_node(start):
-        if node.dest not in path:
-                new_path = get_best_path(digraph, node.dest, end, path, max_dist_outdoors, best_dist, best_path)
-                if new_path != None:
-                    total_dist, outdoor_dist = getDistance(digraph, new_path)
-                    if outdoor_dist <= max_dist_outdoors and total_dist <= best_dist:
-                        best_path = new_path
-                        best_dist = total_dist
+    else:
+        for node in digraph.get_edges_for_node(start):
+            if node.dest not in path:
+                    new_path = get_best_path(digraph, node.dest, end, path, max_dist_outdoors, best_dist, best_path)
+                    if new_path != None:
+                        total_dist, outdoor_dist = getDistance(digraph, new_path)
+                        if outdoor_dist <= max_dist_outdoors and total_dist <= best_dist:
+                            best_path = new_path
+                            best_dist = total_dist
     return best_path
 
 
