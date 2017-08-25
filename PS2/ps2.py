@@ -130,7 +130,6 @@ def get_best_path(digraph, start, end, path, max_dist_outdoors, best_dist,
         return path
     for node in digraph.get_edges_for_node(start):
         if node.dest not in path:
-            # if best_path == None:
                 new_path = get_best_path(digraph, node.dest, end, path, max_dist_outdoors, best_dist, best_path)
                 if new_path != None:
                     total_dist, outdoor_dist = getDistance(digraph, new_path)
